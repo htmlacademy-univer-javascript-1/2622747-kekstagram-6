@@ -1,4 +1,2 @@
-import { generatePhotos } from './photosDataGeneration.js';
+import './photosRendering.js';
 
-// eslint-disable-next-line no-console
-console.log(generatePhotos());
