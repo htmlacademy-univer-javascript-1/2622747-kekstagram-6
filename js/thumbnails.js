@@ -1,4 +1,6 @@
-import { generatePhotos } from './photos-data-generation.js';
+import { generatePhotos } from './photos-data.js';
+import { openBigPicture } from './big-picture.js';
+
 
 const picturesContainerElement = document.querySelector('.pictures');
 const photoTemplateElement = document.querySelector('#picture').content;
@@ -6,16 +8,17 @@ const fragment = document.createDocumentFragment();
 
 const photos = generatePhotos();
 
-photos.forEach(({url, description, likes, comments}) => {
+photos.forEach((photo) => {
   const photoElement = photoTemplateElement.cloneNode(true);
 
   const imgElement = photoElement.querySelector('.picture__img');
-  imgElement.src = url;
-  imgElement.alt = description;
+  imgElement.src = photo.url;
+  imgElement.alt = photo.description;
 
-  photoElement.querySelector('.picture__likes').textContent = likes;
+  photoElement.querySelector('.picture__likes').textContent = photo.likes;
+  photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
 
-  photoElement.querySelector('.picture__coments').textContent = comments.length;
+  imgElement.addEventListener('click', () => openBigPicture(photo));
 
   fragment.appendChild(photoElement);
 });
