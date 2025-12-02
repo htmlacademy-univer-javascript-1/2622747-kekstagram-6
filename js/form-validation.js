@@ -1,3 +1,5 @@
+import { resetDesign } from './photo-editing.js';
+
 const uploadInputElement = document.querySelector('#upload-file');
 const overlayElement = document.querySelector('.img-upload__overlay');
 const bodyElement = document.body;
@@ -13,6 +15,7 @@ const pristine = new Pristine(formElement, {
 });
 
 const openForm = () => {
+  resetDesign();
   overlayElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
 
